@@ -116,32 +116,25 @@ const ProfilePage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-[#0F0F0F] pb-28 md:pb-10 pt-7">
-      {/* ── desktop: centered narrow card ── */}
-      <div className="max-w-lg mx-auto px-4 space-y-4">
+    <div className="min-h-screen bg-[#0F0F0F]">
+
+      {/* ══════════════ MOBILE LAYOUT ══════════════ */}
+      <div className="md:hidden pt-7 pb-28 px-4 space-y-4">
 
         {/* Profile card */}
         <div className="bg-[#1C1C1E] rounded-3xl p-5 flex items-center gap-4">
-          {/* Avatar */}
           <div className="relative flex-shrink-0">
             {avatarUrl ? (
-              <img
-                src={avatarUrl}
-                alt={fullName}
-                className="size-16 rounded-full object-cover"
-              />
+              <img src={avatarUrl} alt={fullName} className="size-16 rounded-full object-cover" />
             ) : (
               <div className="size-16 rounded-full bg-[#2C5282] flex items-center justify-center">
                 <span className="text-white font-bold text-xl">{initials}</span>
               </div>
             )}
-            {/* verified badge */}
             <span className="absolute bottom-0 right-0 bg-green-500 rounded-full p-0.5">
               <CheckCircle2 className="size-3.5 text-white fill-green-500" />
             </span>
           </div>
-
-          {/* Name / email */}
           <div className="flex flex-col min-w-0">
             <h1 className="text-white font-semibold text-lg leading-tight truncate">{fullName}</h1>
             <p className="text-white/50 text-sm truncate">{email}</p>
@@ -170,8 +163,126 @@ const ProfilePage = () => {
           <LogOut className="size-5" />
           Sign Out
         </button>
-
       </div>
+
+      {/* ══════════════ DESKTOP LAYOUT ══════════════ */}
+      <div className="hidden md:flex flex-col min-h-screen">
+
+        {/* Sticky header */}
+        <header className="flex items-center justify-between px-10 py-5 border-b border-[#1A1A1A] bg-[#0F0F0F] sticky top-0 z-10">
+          <div>
+            <h1 className="font-bold text-white text-3xl">My Profile</h1>
+            <p className="text-[#6B7280] text-sm mt-0.5">Manage your account and preferences</p>
+          </div>
+          <button
+            onClick={handleSignOut}
+            className="flex items-center gap-2 border border-red-800/40 text-red-400 font-semibold px-5 py-2.5 rounded-xl hover:bg-red-900/20 transition-colors text-sm"
+          >
+            <LogOut className="size-4" />
+            Sign Out
+          </button>
+        </header>
+
+        {/* Two-column body */}
+        <div className="flex flex-1 gap-8 px-10 py-8 items-start">
+
+          {/* ── Left column: profile card + action tiles ── */}
+          <div className="flex flex-col gap-6 w-72 shrink-0 sticky top-24">
+
+            {/* Profile card */}
+            <div className="bg-[#161616] border border-[#222222] rounded-2xl p-6 flex flex-col items-center gap-3 text-center">
+              <div className="relative">
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt={fullName} className="size-20 rounded-full object-cover" />
+                ) : (
+                  <div className="size-20 rounded-full bg-[#2C5282] flex items-center justify-center">
+                    <span className="text-white font-bold text-2xl">{initials}</span>
+                  </div>
+                )}
+                <span className="absolute bottom-0.5 right-0.5 bg-green-500 rounded-full p-0.5">
+                  <CheckCircle2 className="size-4 text-white fill-green-500" />
+                </span>
+              </div>
+              <div>
+                <h2 className="text-white font-semibold text-lg leading-tight">{fullName}</h2>
+                <p className="text-white/40 text-sm mt-0.5">{email}</p>
+              </div>
+              <div className="flex gap-4 pt-1 w-full border-t border-white/5 mt-1">
+                <div className="flex-1 flex flex-col items-center gap-0.5">
+                  <span className="text-white font-bold text-lg">{orders.length}</span>
+                  <span className="text-white/40 text-xs">Orders</span>
+                </div>
+                <div className="w-px bg-white/5" />
+                <div className="flex-1 flex flex-col items-center gap-0.5">
+                  <span className="text-white font-bold text-lg">{wishlist.length}</span>
+                  <span className="text-white/40 text-xs">Wishlist</span>
+                </div>
+                <div className="w-px bg-white/5" />
+                <div className="flex-1 flex flex-col items-center gap-0.5">
+                  <span className="text-white font-bold text-lg">{addresses.length}</span>
+                  <span className="text-white/40 text-xs">Addresses</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick stats / action tiles as a 2×2 grid */}
+            <div>
+              <p className="text-[#555] text-[11px] uppercase tracking-widest font-semibold mb-3">Quick Access</p>
+              <div className="grid grid-cols-2 gap-3">
+                {actionTiles.map((tile) => (
+                  <ActionTile key={tile.label} {...tile} />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ── Right column: settings + account ── */}
+          <div className="flex-1 flex flex-col gap-6">
+
+            {/* Settings section */}
+            <div>
+              <p className="text-[#555] text-[11px] uppercase tracking-widest font-semibold mb-3">Settings</p>
+              <div className="bg-[#161616] border border-[#222222] rounded-2xl divide-y divide-white/5 px-1">
+                {settingsRows.map((row) => (
+                  <SettingsRow key={row.label} {...row} />
+                ))}
+              </div>
+            </div>
+
+            {/* Account section */}
+            <div>
+              <p className="text-[#555] text-[11px] uppercase tracking-widest font-semibold mb-3">Account</p>
+              <div className="bg-[#161616] border border-[#222222] rounded-2xl p-5 flex flex-col gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="flex-1">
+                    <p className="text-white/40 text-xs mb-0.5">Full Name</p>
+                    <p className="text-white text-sm font-medium">{fullName}</p>
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-white/40 text-xs mb-0.5">Email</p>
+                    <p className="text-white text-sm font-medium truncate">{email}</p>
+                  </div>
+                </div>
+                <div className="border-t border-white/5 pt-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-white/40 text-xs mb-0.5">Account Status</p>
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="size-3.5 text-green-400 fill-green-400" />
+                      <span className="text-green-400 text-sm font-medium">Verified</span>
+                    </div>
+                  </div>
+                  <button className="flex items-center gap-2 border border-[#333] text-white/70 text-sm px-4 py-2 rounded-xl hover:bg-[#222] transition-colors">
+                    <User className="size-4" />
+                    Edit Profile
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
