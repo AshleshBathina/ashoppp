@@ -78,10 +78,10 @@ const HomePage = () => {
   if (isError) return null
 
   return (
-    <div className="flex flex-col min-h-screen h-full bg-[#0F0F0F] pt-7 md:pt-0">
+    <div className="flex flex-col min-h-screen h-full bg-[#0F0F0F]">
 
       {/* ──────────── MOBILE LAYOUT (unchanged) ──────────── */}
-      <div className="md:hidden">
+      <div className="md:hidden pt-7">
         <div className="flex justify-between px-7">
           <div className="">
             <h1 className="font-bold text-white text-2xl">Products Page</h1>
