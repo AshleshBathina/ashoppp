@@ -174,40 +174,34 @@ const HomePage = () => {
           </button>
         </header>
 
-        <div className="flex flex-1">
+        <div className="flex flex-col flex-1">
 
-          {/* Category sidebar */}
-          <aside className="w-52 shrink-0 border-r border-[#1A1A1A] pt-6 pb-8 px-4 sticky top-18.5 self-start h-[calc(100vh-73px)] overflow-y-auto">
-            <p className="text-[#555] text-[11px] uppercase tracking-widest font-semibold mb-3 px-2">Categories</p>
-            <ul className="flex flex-col gap-1">
-              {categories.map((category) => {
-                const active = selectedCategory === category.title
-                return (
-                  <li key={category.id}>
-                    <button
-                      onClick={() => updateCategory(category.title)}
-                      className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
-                        ${active
-                          ? 'bg-green-500/15 text-green-400 border border-green-500/25'
-                          : 'text-[#9CA3AF] hover:bg-[#1A1A1A] hover:text-white'
-                        }`}
-                    >
-                      <span className={`${active ? 'text-green-400' : 'text-[#555]'} transition-colors`}>
-                        {/* Render smaller icon for desktop */}
-                        {category.id === 'ALL' && <LayoutGrid className="size-4" />}
-                        {category.id === 'ELECTRONICS' && <MonitorSmartphone className="size-4" />}
-                        {category.id === 'FASHION' && <Handbag className="size-4" />}
-                        {category.id === 'SPORTS' && <Trophy className="size-4" />}
-                        {category.id === 'BOOKS' && <LibraryBig className="size-4" />}
-                      </span>
-                      {category.title}
-                      {active && <span className="ml-auto w-1.5 h-4 bg-green-400 rounded-full" />}
-                    </button>
-                  </li>
-                )
-              })}
-            </ul>
-          </aside>
+          {/* Horizontal category filter bar */}
+          <div className="px-8 py-4 border-b border-[#1A1A1A] flex items-center gap-2 flex-wrap">
+            {categories.map((category) => {
+              const active = selectedCategory === category.title
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => updateCategory(category.title)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border
+                    ${active
+                      ? 'bg-green-500/15 text-green-400 border-green-500/25'
+                      : 'text-[#9CA3AF] bg-[#1A1A1A] border-[#2A2A2A] hover:text-white hover:border-[#3A3A3A]'
+                    }`}
+                >
+                  <span className={`${active ? 'text-green-400' : 'text-[#555]'} transition-colors`}>
+                    {category.id === 'ALL' && <LayoutGrid className="size-4" />}
+                    {category.id === 'ELECTRONICS' && <MonitorSmartphone className="size-4" />}
+                    {category.id === 'FASHION' && <Handbag className="size-4" />}
+                    {category.id === 'SPORTS' && <Trophy className="size-4" />}
+                    {category.id === 'BOOKS' && <LibraryBig className="size-4" />}
+                  </span>
+                  {category.title}
+                </button>
+              )
+            })}
+          </div>
 
           {/* Main product grid */}
           <main className="flex-1 px-8 py-6">
