@@ -657,7 +657,7 @@ const AddressesPage = () => {
                 {/* Add new address card */}
                 <button
                   onClick={openAddForm}
-                  className="flex flex-col items-center justify-center gap-3 border-2 border-dashed border-white/10 hover:border-green-600/50 hover:bg-green-600/5 rounded-2xl py-8 text-white/30 hover:text-green-500 transition-all active:scale-95 group min-h-[180px]"
+                  className="flex flex-col items-center justify-center gap-3 border-2 border-dashed border-white/10 hover:border-green-600/50 hover:bg-green-600/5 rounded-2xl py-8 text-white/30 hover:text-green-500 transition-all active:scale-95 group min-h-45"
                 >
                   <div className="flex items-center justify-center w-10 h-10 rounded-xl border border-current transition-colors">
                     <Plus className="size-5" />
