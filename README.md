@@ -60,10 +60,11 @@ ecommerce-app/
 ### 🛍️ Customer Storefront (`/frontend`)
 
 - **Authentication** — Clerk-powered sign-in/sign-up with SSO callback support.
-- **Product Listing** — Browse products with real-time search and category filtering (All, Electronics, Fashion, Sports, Books).
+- **Product Listing** — Browse products with real-time search and category filtering (All, Electronics, Fashion, Sports, Books). Desktop view features a horizontal filter sidebar for optimal space usage.
 - **Wishlist** — Toggle products in/out of a personal wishlist with heart icons.
-- **Cart Management** — Add items, adjust quantities with `+`/`-` controls, remove items, and view a live order summary (subtotal + ₹10 shipping).
-- **Profile Page** — User profile view.
+- **Cart Management** — Add items, adjust quantities with `+`/`-` controls, remove items, and view a live order summary (subtotal + ₹10 shipping). Fully optimised desktop layout.
+- **Profile Page** — View and manage account details. Optimised two-column desktop layout with navigation links to other sections.
+- **Address Management** — Full CRUD for saved delivery addresses. Set a default address, add/edit/delete addresses via a modal form. Desktop view uses a responsive card grid layout.
 - **Protected Routes** — Unauthenticated users are redirected to `/login`.
 
 **Routes:**
@@ -73,6 +74,7 @@ ecommerce-app/
 | `/home` | Product listing |
 | `/cart` | Shopping cart |
 | `/profile` | User profile |
+| `/addresses` | Saved addresses |
 
 ---
 
@@ -103,14 +105,16 @@ ecommerce-app/
 |---|---|
 | `GET /api/health` | Health check |
 | `/api/admin` | Admin-only operations |
-| `/api/users` | User management |
+| `/api/users` | User management & address CRUD |
 | `/api/products` | Product CRUD & queries |
 | `/api/cart` | Cart operations |
 | `/api/orders` | Order management |
 | `/api/reviews` | Product reviews |
 | `/api/inngest` | Inngest background job handler |
 
-**Data Models:** `User`, `Product`, `Cart`, `Order`, `Review`
+**Data Models:** `User` (with embedded `Address` sub-documents), `Product`, `Cart`, `Order`, `Review`
+
+> The `User` model embeds an `addresses` array, where each address stores `fullName`, `phoneNumber`, `streetAddress`, `city`, `state`, `zipCode`, `label`, and an `isDefault` flag.
 
 **Production:** In production mode the backend serves the compiled admin panel from `admin/dist/`.
 
@@ -189,7 +193,7 @@ npm install
 Create `frontend/.env`:
 ```env
 VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-VITE_BACKEND_URL=http://localhost:3000
+VITE_API_URL=http://localhost:3000
 ```
 
 ```bash
@@ -222,6 +226,8 @@ npm start
 ```
 
 In production, the Express server statically serves `admin/dist/` and handles all non-API routes with the admin `index.html`.
+
+> **Note:** The frontend Storefront is deployed separately. Set `VITE_API_URL` to your production backend URL (e.g., `https://your-api.onrender.com`) in the frontend environment.
 
 ---
 
