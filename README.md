@@ -59,7 +59,7 @@ ecommerce-app/
 
 ### 🛍️ Customer Storefront (`/frontend`)
 
-- **Authentication** — Clerk-powered sign-in/sign-up with SSO callback support.
+- **Authentication** — Clerk-powered sign-in with **Google** and **Apple** OAuth. Includes an SSO callback route (`/sso`) to complete the sign-in flow.
 - **Product Listing** — Browse products with real-time search and category filtering (All, Electronics, Fashion, Sports, Books). Desktop view features a horizontal filter sidebar for optimal space usage.
 - **Wishlist** — Toggle products in/out of a personal wishlist with heart icons.
 - **Cart Management** — Add items, adjust quantities with `+`/`-` controls, remove items, and view a live order summary (subtotal + ₹10 shipping). Fully optimised desktop layout.
@@ -70,7 +70,8 @@ ecommerce-app/
 **Routes:**
 | Path | Page |
 |---|---|
-| `/login` | Login / SSO |
+| `/login` | Login (Google / Apple OAuth) |
+| `/sso` | SSO callback handler |
 | `/home` | Product listing |
 | `/cart` | Shopping cart |
 | `/profile` | User profile |
