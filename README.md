@@ -4,7 +4,17 @@ A full-stack e-commerce solution consisting of three applications: a **customer-
 
 ---
 
-## 🗂️ Project Structure
+## 🌐 Live Demo
+
+| App | URL |
+|---|---|
+| 🛍️ User Storefront | [ashoppp.vercel.app](https://ashoppp.vercel.app/) |
+| �️ Admin Panel | [admin-ashoppp.vercel.app](https://admin-ashoppp.vercel.app/) |
+| ⚙️ Backend API | [ashoppp.onrender.com](https://ashoppp.onrender.com) |
+
+---
+
+## �🗂️ Project Structure
 
 ```
 ecommerce-app/
@@ -216,7 +226,9 @@ npm run seed:products
 
 ## 🚢 Deployment
 
-The root `package.json` provides convenience scripts for deployment platforms (e.g., Render):
+### Backend (Render)
+
+The root `package.json` provides convenience scripts for Render:
 
 ```bash
 # Install dependencies and build the admin panel
@@ -228,7 +240,23 @@ npm start
 
 In production, the Express server statically serves `admin/dist/` and handles all non-API routes with the admin `index.html`.
 
-> **Note:** The frontend Storefront is deployed separately. Set `VITE_API_URL` to your production backend URL (e.g., `https://your-api.onrender.com`) in the frontend environment.
+**Live URL:** https://ashoppp.onrender.com
+
+### Frontend & Admin (Vercel)
+
+Both `frontend/` and `admin/` are deployed as separate Vercel projects.
+
+Each app includes a `vercel.json` with a catch-all rewrite to prevent 404 errors on page reload (required for React Router client-side routing):
+
+```json
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+```
+
+> **Note:** Set `VITE_API_URL` to your production backend URL (e.g., `https://ashoppp.onrender.com`) in the frontend environment variables on Vercel.
 
 ---
 
