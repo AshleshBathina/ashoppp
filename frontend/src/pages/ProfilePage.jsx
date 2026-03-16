@@ -13,16 +13,11 @@ import {
   CheckCircle2,
 } from "lucide-react"
 import { useNavigate } from "react-router"
+import getInitials from "../utils/getInitials"
 
 /* ─── tiny helpers ─────────────────────────────────────────── */
 
-const getInitials = (name = "") =>
-  name
-    .split(" ")
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2)
+
 
 /* ─── sub-components ────────────────────────────────────────── */
 
@@ -123,7 +118,7 @@ const ProfilePage = () => {
 
         {/* Profile card */}
         <div className="bg-[#1C1C1E] rounded-3xl p-5 flex items-center gap-4">
-          <div className="relative flex-shrink-0">
+          <div className="relative shrink-0">
             {avatarUrl ? (
               <img src={avatarUrl} alt={fullName} className="size-16 rounded-full object-cover" />
             ) : (
