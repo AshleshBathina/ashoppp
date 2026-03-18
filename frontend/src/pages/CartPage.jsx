@@ -24,7 +24,7 @@ const CartPage = () => {
   return (
     <div className="flex flex-col min-h-screen h-full bg-[#0F0F0F]">
 
-      {/* ──────────── MOBILE LAYOUT (unchanged) ──────────── */}
+      {/* ──────────── MOBILE LAYOUT ──────────── */}
       <div className="md:hidden pt-7 pb-55">
         <div className="px-7 flex items-center">
           <h1 className="font-bold text-white text-2xl mr-2">Cart</h1>
