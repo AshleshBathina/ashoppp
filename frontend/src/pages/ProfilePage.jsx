@@ -9,42 +9,12 @@ import {
   Bell,
   ShieldCheck,
   LogOut,
-  ChevronRight,
   CheckCircle2,
 } from "lucide-react"
 import { useNavigate } from "react-router"
 import getInitials from "../utils/getInitials"
-
-
-/* ─── sub-components ────────────────────────────────────────── */
-
-const ActionTile = ({ icon, label, accent, onClick }) => (
-  <button
-    onClick={onClick}
-    className="flex flex-col items-center justify-center gap-3 rounded-2xl bg-[#1C1C1E] p-5 transition-colors hover:bg-[#2C2C2E] active:scale-95 w-full aspect-square"
-  >
-    <div
-      className="flex items-center justify-center rounded-2xl p-3"
-      style={{ backgroundColor: accent + "22" }}
-    >
-      {icon}
-    </div>
-    <span className="text-sm font-medium text-white">{label}</span>
-  </button>
-)
-
-const SettingsRow = ({ icon, label, onClick }) => (
-  <button
-    onClick={onClick}
-    className="flex items-center justify-between w-full px-4 py-4 transition-colors hover:bg-[#2C2C2E] active:bg-[#2C2C2E] rounded-2xl"
-  >
-    <div className="flex items-center gap-3">
-      <div className="text-white/70">{icon}</div>
-      <span className="text-white text-sm font-medium">{label}</span>
-    </div>
-    <ChevronRight className="text-white/40 size-4" />
-  </button>
-)
+import SettingsRow from "../components/SettingsRow"
+import ActionTile from "../components/ActionTile"
 
 /* ─── main component ─────────────────────────────────────────── */
 
