@@ -15,7 +15,7 @@ const useCart = () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
     onError: (error) => {
-      console.error('❌ addToCart ERROR:', error)
+      console.error('addToCart ERROR:', error)
     }
   })
 
@@ -32,7 +32,7 @@ const useCart = () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
     onError: (error) => {
-      console.error('❌ removeFromCart ERROR:', error)
+      console.error('removeFromCart ERROR:', error)
     }
   })
 
