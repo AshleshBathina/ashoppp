@@ -16,7 +16,7 @@ import getInitials from "../utils/getInitials"
 import SettingsRow from "../components/SettingsRow"
 import ActionTile from "../components/ActionTile"
 
-/* ─── main component ─────────────────────────────────────────── */
+/* ─── main component ──── */
 
 const ProfilePage = () => {
   const { user } = useUser()
