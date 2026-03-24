@@ -16,7 +16,7 @@ import getInitials from "../utils/getInitials"
 import SettingsRow from "../components/SettingsRow"
 import ActionTile from "../components/ActionTile"
 
-/* ─── main component ──── */
+/* main component */
 
 const ProfilePage = () => {
   const { user } = useUser()
@@ -80,7 +80,7 @@ const ProfilePage = () => {
   return (
     <div className="min-h-screen bg-[#0F0F0F]">
 
-      {/* ══════════════ MOBILE LAYOUT ══════════════ */}
+      {/* MOBILE LAYOUT */}
       <div className="md:hidden pt-7 pb-28 px-4 space-y-4">
 
         {/* Profile card */}
@@ -127,7 +127,7 @@ const ProfilePage = () => {
         </button>
       </div>
 
-      {/* ══════════════ DESKTOP LAYOUT ══════════════ */}
+      {/* DESKTOP LAYOUT */}
       <div className="hidden md:flex flex-col min-h-screen">
 
         {/* Sticky header */}
