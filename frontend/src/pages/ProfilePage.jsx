@@ -148,7 +148,7 @@ const ProfilePage = () => {
         {/* Two-column body */}
         <div className="flex flex-1 gap-8 px-10 py-8 items-start">
 
-          {/* ── Left column: profile card + action tiles ── */}
+          {/* Left column: profile card + action tiles */}
           <div className="flex flex-col gap-6 w-72 shrink-0 sticky top-24">
 
             {/* Profile card */}
@@ -198,7 +198,7 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          {/* ── Right column: settings + account ── */}
+          {/*  Right column: settings + account  */}
           <div className="flex-1 flex flex-col gap-6">
 
             {/* Settings section */}
