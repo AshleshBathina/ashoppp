@@ -99,7 +99,7 @@ const CartPage = () => {
         </div>
       </div>
 
-      {/* ──────────── DESKTOP LAYOUT ──────────── */}
+      {/*  DESKTOP LAYOUT  */}
       <div className="hidden md:flex flex-col h-full min-h-screen">
 
         {/* Header */}
