@@ -80,7 +80,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col min-h-screen h-full bg-[#0F0F0F]">
 
-      {/* ──────────── MOBILE LAYOUT (unchanged) ──────────── */}
+      {/*  MOBILE LAYOUT (unchanged)  */}
       <div className="md:hidden pt-7">
         <div className="flex justify-between px-7">
           <div className="">
@@ -146,7 +146,7 @@ const HomePage = () => {
         }
       </div>
 
-      {/* ──────────── DESKTOP LAYOUT ──────────── */}
+      {/*  DESKTOP LAYOUT  */}
       <div className="hidden md:flex flex-col h-full min-h-screen">
 
         {/* Top header bar */}
