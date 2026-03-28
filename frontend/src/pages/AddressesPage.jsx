@@ -50,7 +50,7 @@ const FIELD_CONFIGS = [
 
 
 
-/* ─── main page ──────────────────────────────────────────────── */
+/*  main page  */
 
 const AddressesPage = () => {
   const navigate = useNavigate()
