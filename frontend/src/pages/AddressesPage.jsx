@@ -2,53 +2,10 @@ import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { userApi } from "../lib/api"
 import { useNavigate } from "react-router"
-import {
-  ArrowLeft,
-  MapPin,
-  Plus,
-  X,
-  PenLine,
-  Trash2,
-  Home,
-  Briefcase,
-  Building2,
-} from "lucide-react"
+import { ArrowLeft, MapPin, Plus } from "lucide-react"
 
 import { AddressForm, DesktopAddressModal } from "../modals/AddressFormModal"
 import { AddressCard, DesktopAddressCard } from "../components/AddressCard"
-
-const LABEL_ICONS = {
-  Home: <Home className="size-4" />,
-  Work: <Briefcase className="size-4" />,
-  Office: <Building2 className="size-4" />,
-}
-
-const getLabelIcon = (label = "") =>
-  LABEL_ICONS[label] ?? <MapPin className="size-4" />
-
-const EMPTY_FORM = {
-  label: "",
-  fullName: "",
-  streetAddress: "",
-  city: "",
-  state: "",
-  zipCode: "",
-  phoneNumber: "",
-  isDefault: false,
-}
-
-
-const FIELD_CONFIGS = [
-  { key: "label", label: "Label", placeholder: "e.g., Home, Work, Office", type: "text" },
-  { key: "fullName", label: "Full Name", placeholder: "Enter your full name", type: "text" },
-  { key: "streetAddress", label: "Street Address", placeholder: "Street address, apt/suite number", type: "text" },
-  { key: "city", label: "City", placeholder: "e.g., New York", type: "text" },
-  { key: "state", label: "State", placeholder: "e.g., NY", type: "text" },
-  { key: "zipCode", label: "ZIP Code", placeholder: "e.g., 10001", type: "text" },
-  { key: "phoneNumber", label: "Phone Number", placeholder: "+1 (555) 123-4567", type: "tel" },
-]
-
-
 
 /*  main page  */
 

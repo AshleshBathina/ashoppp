@@ -1,3 +1,14 @@
+import { MapPin, PenLine, Trash2, Home, Briefcase, Building2 } from "lucide-react"
+
+const LABEL_ICONS = {
+  Home: <Home className="size-4" />,
+  Work: <Briefcase className="size-4" />,
+  Office: <Building2 className="size-4" />,
+}
+
+const getLabelIcon = (label = "") =>
+  LABEL_ICONS[label] ?? <MapPin className="size-4" />
+
 export const AddressCard = ({ address, onEdit, onDelete, isDeleting }) => (
   <div className="bg-[#1C1C1E] rounded-2xl p-4 space-y-3">
     {/* Header row */}

@@ -8,6 +8,8 @@ import HomePage from './pages/HomePage'
 import CartPage from './pages/CartPage'
 import ProfilePage from './pages/ProfilePage'
 import AddressesPage from './pages/AddressesPage'
+import WishlistPage from './pages/WishlistPage'
+import ProductDetailPage from './pages/ProductDetailPage'
 
 import PageLoader from './components/PageLoader'
 import DashboardLayout from './layouts/DashboardLayout'
@@ -24,6 +26,8 @@ function App() {
         <Route index element={<Navigate to="/home" />} />
         <Route path="home" element={<HomePage />} />
         <Route path="cart" element={<CartPage />} />
+        <Route path="wishlist" element={<WishlistPage />} />
+        <Route path="product/:id" element={<ProductDetailPage />} />
         <Route path="profile" element={<ProfilePage />} />
       </Route>
       {/* No navbar on this page */}
@@ -32,4 +36,4 @@ function App() {
   )
 }
 
-export default App 
+export default App
