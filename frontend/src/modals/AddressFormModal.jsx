@@ -1,3 +1,27 @@
+import { useState } from "react"
+import { X } from "lucide-react"
+
+const EMPTY_FORM = {
+  label: "",
+  fullName: "",
+  streetAddress: "",
+  city: "",
+  state: "",
+  zipCode: "",
+  phoneNumber: "",
+  isDefault: false,
+}
+
+const FIELD_CONFIGS = [
+  { key: "label", label: "Label", placeholder: "e.g., Home, Work, Office", type: "text" },
+  { key: "fullName", label: "Full Name", placeholder: "Enter your full name", type: "text" },
+  { key: "streetAddress", label: "Street Address", placeholder: "Street address, apt/suite number", type: "text" },
+  { key: "city", label: "City", placeholder: "e.g., New York", type: "text" },
+  { key: "state", label: "State", placeholder: "e.g., NY", type: "text" },
+  { key: "zipCode", label: "ZIP Code", placeholder: "e.g., 10001", type: "text" },
+  { key: "phoneNumber", label: "Phone Number", placeholder: "+1 (555) 123-4567", type: "tel" },
+]
+
 export const DesktopAddressModal = ({ initial, onSave, onClose, isSaving }) => {
   const [form, setForm] = useState(initial ?? EMPTY_FORM)
 

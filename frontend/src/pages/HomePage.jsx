@@ -1,10 +1,11 @@
 import useProducts from "../hooks/useProducts"
 import useWishlist from "../hooks/useWishlist"
-import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart, Plus, Check, SlidersHorizontal } from "lucide-react"
+import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart, Plus, Check, SlidersHorizontal, LoaderIcon } from "lucide-react"
 
 import PageLoader from "../components/PageLoader"
 import { useMemo, useState } from "react"
 import useCart from "../hooks/useCart"
+import { useNavigate } from "react-router"
 
 
 
@@ -39,8 +40,8 @@ const categories = [
 
 const HomePage = () => {
   const { isAddingToWishlist, isRemovingFromWishlist, isInWishlist, toggleWishlist } = useWishlist()
-
   const { isInCart, toggleCart } = useCart()
+  const navigate = useNavigate()
 
   const [selectedCategory, handleSelectedCategory] = useState(categories[0].title)
   const [searchQuery, handleSearchQuery] = useState('')
@@ -118,14 +119,14 @@ const HomePage = () => {
             <ul className="px-7 mt-2 flex flex-wrap gap-4 pb-24">
               {filteredProducts.map((product) => (
                 <li key={product._id} className="w-40 h-65 rounded-2xl">
-                  <div className="h-33 rounded-t-2xl relative overflow-hidden flex justify-center items-center">
+                  <div className="h-33 rounded-t-2xl relative overflow-hidden flex justify-center items-center cursor-pointer" onClick={() => navigate(`/product/${product._id}`)}>
                     <img className="w-full h-full" src={product.images[0]} />
                     <button className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm size-9 rounded-3xl flex justify-center items-center" disabled={isAddingToWishlist.isPending || isRemovingFromWishlist.isPending} onClick={() => toggleWishlist(product._id)}>
                       <Heart className={`size-5  ${isInWishlist(product._id) ? 'fill-red-400 text-red-400' : 'text-white'}`} />
                     </button>
                   </div>
 
-                  <div className="bg-[#1F1F1F] h-32 rounded-b-2xl p-3">
+                  <div className="bg-[#1F1F1F] h-32 rounded-b-2xl p-3 cursor-pointer" onClick={() => navigate(`/product/${product._id}`)}>
                     <p className="text-[10px] text-neutral-400 mb-1" >{product.category}</p>
                     <h1 className="line-clamp-1 text-xs mb-1 font-medium text-white">{product.name}</h1>
                     <p className="flex text-sm gap-1 items-center text-white text-[10px]"><Star className="fill-amber-300 size-3 text-amber-400" />{product.averageRating}<span className="text-neutral-400">{`(${product.totalReviews})`}</span></p>
@@ -220,15 +221,15 @@ const HomePage = () => {
               <ul className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
                 {filteredProducts.map((product) => (
                   <li key={product._id} className="rounded-2xl bg-[#161616] border border-[#222222] hover:border-green-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40 overflow-hidden group">
-                    <div className="h-48 relative overflow-hidden">
+                    <div className="h-48 relative overflow-hidden cursor-pointer" onClick={() => navigate(`/product/${product._id}`)}>
                       <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={product.images[0]} alt={product.name} />
                       {/* Wishlist */}
                       <button
-                        className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm size-9 rounded-full flex justify-center items-center hover:bg-black/70 transition-colors"
+                        className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm size-9 rounded-full flex justify-center items-center hover:bg-black/70 transition-colors cursor-pointer"
                         disabled={isAddingToWishlist.isPending || isRemovingFromWishlist.isPending}
                         onClick={() => toggleWishlist(product._id)}
                       >
-                        <Heart className={`size-4 ${isInWishlist(product._id) ? 'fill-red-400 text-red-400' : 'text-white'}`} />
+                        {!isAddingToWishlist || isRemovingFromWishlist ? <Heart className={`size-4 ${isInWishlist(product._id) ? 'fill-red-400 text-red-400' : 'text-white'}`} /> : <LoaderIcon className="text-white animate-spin size-5" />}
                       </button>
                       {/* Category badge */}
                       <span className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-[10px] text-neutral-300 px-2 py-0.5 rounded-full">
@@ -236,7 +237,7 @@ const HomePage = () => {
                       </span>
                     </div>
 
-                    <div className="p-4">
+                    <div className="p-4 cursor-pointer" onClick={() => navigate(`/product/${product._id}`)}>
                       <h2 className="line-clamp-2 text-sm font-medium text-white leading-snug mb-2">{product.name}</h2>
                       <p className="flex gap-1 items-center text-[11px] text-neutral-400 mb-3">
                         <Star className="fill-amber-300 size-3 text-amber-400" />
@@ -247,7 +248,7 @@ const HomePage = () => {
                       <div className="flex items-center justify-between">
                         <p className="text-green-400 font-bold text-base">₹{product.price}</p>
                         <button
-                          className={`rounded-xl px-3 py-1.5 text-xs font-medium flex items-center gap-1.5 transition-all duration-200
+                          className={`rounded-xl px-3 py-1.5 text-xs font-medium flex items-center gap-1.5 transition-all duration-200 cursor-pointer
                             ${isInCart(product._id)
                               ? 'bg-green-500/15 text-green-400 border border-green-500/30'
                               : 'bg-green-400 text-black hover:bg-green-300'

@@ -5,6 +5,11 @@ export const productsApi = {
     const { data } = await axiosInstance.get('/products');
     return data;
   },
+
+  getProductById: async (productId) => {
+    const { data } = await axiosInstance.get(`/products/${productId}`);
+    return data;
+  },
 }
 
 export const wishlistApi = {

@@ -26,7 +26,6 @@ const useWishlist = () => {
   const toggleWishlist = (productId) => {
     if (addToWishlistMutation.isPending || removeFromWishlistMutation.isPending) return;
 
-
     if (isInWishlist(productId)) {
       removeFromWishlistMutation.mutate(productId);
     } else {
@@ -34,8 +33,26 @@ const useWishlist = () => {
     }
   }
 
-  return { isLoading, isError, wishlist: wishlist || [], wishlistCount: wishlist?.length || 0, isInWishlist, toggleWishlist, addToWishlist: addToWishlistMutation.mutate, removeFromWishlist: removeFromWishlistMutation.mutate, isAddingToWishlist: addToWishlistMutation.isPending, isRemovingFromWishlist: removeFromWishlistMutation.isPending }
+  /** Returns true while this specific product is being added or removed */
+  const isTogglePending = (productId) => {
+    if (addToWishlistMutation.isPending && addToWishlistMutation.variables === productId) return true;
+    if (removeFromWishlistMutation.isPending && removeFromWishlistMutation.variables === productId) return true;
+    return false;
+  }
 
+  return {
+    isLoading,
+    isError,
+    wishlist: wishlist || [],
+    wishlistCount: wishlist?.length || 0,
+    isInWishlist,
+    toggleWishlist,
+    isTogglePending,
+    addToWishlist: addToWishlistMutation.mutate,
+    removeFromWishlist: removeFromWishlistMutation.mutate,
+    isAddingToWishlist: addToWishlistMutation.isPending,
+    isRemovingFromWishlist: removeFromWishlistMutation.isPending
+  }
 }
 
 export default useWishlist

@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 
 import { clerkMiddleware } from '@clerk/express'
 import { ENV } from "./config/env.js";
@@ -20,7 +19,6 @@ import cartRouter from "./routes/cartRouter.js"
 
 const app = express();
 
-const __dirname = path.resolve();
 app.use(express.json());
 app.use(clerkMiddleware());
 app.use(cors({ origin: [ENV.CLIENT_URL, ENV.ADMIN_CLIENT_URL], credentials: true }))
@@ -36,7 +34,7 @@ app.use("/api/cart", cartRouter)
 
 const PORT = process.env.PORT || 3000;
 
-app.get("/api/health", (req, res) => {
+app.get("/api/health", (_, res) => {
   res.send("OK");
 })
 
