@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import { createProduct, getAllProducts, updateProduct, deleteProduct, getAllOrders, updateOrderStatus, getAllCustomers, getDashboardStats } from '../controllers/adminController.js'
+import { getAllInterests } from '../controllers/interestController.js'
 import { adminOnly, protectRoute } from '../middleware/authMiddleware.js'
 import { upload } from '../middleware/multerMiddleware.js'
 
@@ -18,5 +19,6 @@ router.patch("/orders/:orderId/status", updateOrderStatus)
 
 router.get("/customers", getAllCustomers)
 router.get("/stats", getDashboardStats)
+router.get("/interests", getAllInterests)
 
 export default router

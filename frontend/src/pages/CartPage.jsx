@@ -1,10 +1,23 @@
-import { ArrowRight, LoaderIcon, Minus, Plus, ShoppingCart, Trash2, ShoppingBag } from "lucide-react";
+import { ArrowRight, LoaderIcon, Minus, Plus, ShoppingCart, Trash2, ShoppingBag, Sparkles, Check } from "lucide-react";
+import { useState } from "react";
 import useCart from "../hooks/useCart"
 import roundNumber from "../utils/roundNumber";
+import { useMutation } from "@tanstack/react-query"
+import { interestApi } from "../lib/api"
 
 const CartPage = () => {
 
   const { cart, updateCartItem, isAddingToCart, isRemovingFromCart, removeFromCart } = useCart()
+
+  const [cartInterestedDone, setCartInterestedDone] = useState(false)
+
+  const bulkInterestMutation = useMutation({
+    mutationFn: interestApi.expressCartInterest,
+    onSuccess: () => {
+      setCartInterestedDone(true)
+      setTimeout(() => setCartInterestedDone(false), 4000)
+    }
+  })
 
   const isBusy = isAddingToCart || isRemovingFromCart;
   const cartItems = cart?.items || [];
@@ -95,7 +108,18 @@ const CartPage = () => {
             </p>
             <p className="text-white text-lg font-medium">₹{roundNumber(subTotal)}</p>
           </div>
-          <button className="bg-green-400 flex justify-center p-4 text-md font-bold rounded-2xl w-full items-center">Checkout <ArrowRight className="size-6 ml-2" /></button>
+          <button
+            disabled={cartItems.length === 0 || bulkInterestMutation.isPending}
+            onClick={() => bulkInterestMutation.mutate()}
+            className={`flex justify-center p-4 text-md font-bold rounded-2xl w-full items-center gap-2 transition-all active:scale-95 disabled:opacity-50 cursor-pointer
+              ${cartInterestedDone ? "bg-purple-500/20 text-purple-300 border border-purple-500/30" : "bg-purple-600 hover:bg-purple-500 text-white"}`}
+          >
+            {bulkInterestMutation.isPending
+              ? <LoaderIcon className="size-5 animate-spin" />
+              : cartInterestedDone
+                ? <><Check className="size-5" />Interest Noted! We'll reach out soon</>
+                : <><Sparkles className="size-5" />Express Interest in All Items</>}
+          </button>
         </div>
       </div>
 
@@ -224,9 +248,18 @@ const CartPage = () => {
                   <p className="text-green-400 font-bold text-xl">₹{roundNumber(subTotal + 10)}</p>
                 </div>
 
-                {/* Checkout CTA */}
-                <button className="mt-1 bg-green-400 hover:bg-green-300 transition-colors flex justify-center items-center gap-2 p-3.5 text-sm font-bold rounded-xl w-full">
-                  Proceed to Checkout <ArrowRight className="size-4" />
+                {/* Interest CTA */}
+                <button
+                  disabled={cartItems.length === 0 || bulkInterestMutation.isPending}
+                  onClick={() => bulkInterestMutation.mutate()}
+                  className={`mt-1 flex justify-center items-center gap-2 p-3.5 text-sm font-bold rounded-xl w-full transition-all active:scale-95 disabled:opacity-50 cursor-pointer
+                    ${cartInterestedDone ? "bg-purple-500/20 text-purple-300 border border-purple-500/30" : "bg-purple-600 hover:bg-purple-500 text-white"}`}
+                >
+                  {bulkInterestMutation.isPending
+                    ? <LoaderIcon className="size-4 animate-spin" />
+                    : cartInterestedDone
+                      ? <><Check className="size-4" />Interest Noted!</>
+                      : <><Sparkles className="size-4" />Express Interest in All Items <ArrowRight className="size-4" /></>}
                 </button>
 
                 {/* Items badge */}

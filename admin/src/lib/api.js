@@ -48,3 +48,10 @@ export const customerApi = {
     return data
   }
 }
+
+export const interestsApi = {
+  getAll: async () => {
+    const { data } = await axiosInstance.get("admin/interests")
+    return data
+  }
+}
