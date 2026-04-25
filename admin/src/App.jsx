@@ -6,6 +6,7 @@ import DashboardPage from "./pages/DashboardPage"
 import ProductsPage from "./pages/ProductsPage"
 import OrdersPage from "./pages/OrdersPage"
 import CustomersPage from "./pages/CustomersPage"
+import InterestsPage from "./pages/InterestsPage"
 
 import PageLoader from "./components/PageLoader"
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="products" element={<ProductsPage />} />
         <Route path="orders" element={<OrdersPage />} />
         <Route path="customers" element={<CustomersPage />} />
+        <Route path="interests" element={<InterestsPage />} />
 
 
       </Route>

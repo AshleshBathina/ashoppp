@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useParams, useNavigate } from "react-router"
-import { useQuery } from "@tanstack/react-query"
-import { productsApi } from "../lib/api"
+import { useQuery, useMutation } from "@tanstack/react-query"
+import { productsApi, interestApi } from "../lib/api"
 import useCart from "../hooks/useCart"
 import useWishlist from "../hooks/useWishlist"
 import {
@@ -17,6 +17,7 @@ import {
   LoaderIcon,
   ChevronLeft,
   ChevronRight,
+  Sparkles,
 } from "lucide-react"
 
 /* ─── Star renderer ─────────────────────────────────────── */
@@ -126,9 +127,18 @@ const ProductDetailPage = () => {
   const navigate = useNavigate()
 
   const [quantity, setQuantity] = useState(1)
+  const [interestedDone, setInterestedDone] = useState(false)
 
   const { isInCart, addToCart, updateCartItem, isAddingToCart } = useCart()
   const { isInWishlist, toggleWishlist, isTogglePending } = useWishlist()
+
+  const interestMutation = useMutation({
+    mutationFn: ({ productId, quantity }) => interestApi.expressInterest({ productId, quantity }),
+    onSuccess: () => {
+      setInterestedDone(true)
+      setTimeout(() => setInterestedDone(false), 3000)
+    }
+  })
 
   const { data: product, isLoading, isError } = useQuery({
     queryKey: ["product", id],
@@ -260,6 +270,20 @@ const ProductDetailPage = () => {
                   ? <><Check className="size-4" />In Cart</>
                   : <><ShoppingCart className="size-4" />Add to Cart</>}
             </button>
+
+            {/* Interested button */}
+            <button
+              onClick={() => interestMutation.mutate({ productId: product._id, quantity })}
+              disabled={interestMutation.isPending}
+              className={`shrink-0 flex items-center justify-center gap-1.5 px-4 py-3.5 rounded-2xl font-bold text-sm transition-all active:scale-95 disabled:opacity-50 cursor-pointer
+                ${interestedDone ? "bg-purple-500/20 text-purple-300 border border-purple-500/30" : "bg-[#1C1C1E] border border-[#2A2A2A] text-white/70 hover:text-purple-300 hover:border-purple-500/30"}`}
+            >
+              {interestMutation.isPending
+                ? <LoaderIcon className="size-4 animate-spin" />
+                : interestedDone
+                  ? <><Check className="size-4" />Noted!</>
+                  : <><Sparkles className="size-4" />Interested</>}
+            </button>
           </div>
         </div>
       </div>
@@ -383,6 +407,20 @@ const ProductDetailPage = () => {
                       : <Heart className={`size-5 ${inWishlist ? "fill-red-400" : ""}`} />}
                   </button>
                 </div>
+
+                {/* Interested button */}
+                <button
+                  onClick={() => interestMutation.mutate({ productId: product._id, quantity })}
+                  disabled={interestMutation.isPending}
+                  className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold text-sm transition-all active:scale-95 disabled:opacity-50 cursor-pointer
+                    ${interestedDone ? "bg-purple-500/20 text-purple-300 border border-purple-500/30" : "bg-[#161616] border border-[#2A2A2A] text-white/70 hover:text-purple-300 hover:border-purple-500/30 hover:bg-purple-500/5"}`}
+                >
+                  {interestMutation.isPending
+                    ? <LoaderIcon className="size-4 animate-spin" />
+                    : interestedDone
+                      ? <><Check className="size-4" />Interest Recorded — We'll reach out!</>
+                      : <><Sparkles className="size-4" />I'm Interested</>}
+                </button>
               </div>
             </div>
           </div>

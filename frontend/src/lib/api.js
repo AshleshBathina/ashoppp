@@ -63,6 +63,18 @@ export const ordersApi = {
   },
 }
 
+export const interestApi = {
+  expressInterest: async ({ productId, quantity }) => {
+    const { data } = await axiosInstance.post('/interests/', { productId, quantity })
+    return data
+  },
+
+  expressCartInterest: async () => {
+    const { data } = await axiosInstance.post('/interests/bulk')
+    return data
+  }
+}
+
 export const userApi = {
   getAddresses: async () => {
     const { data } = await axiosInstance.get('/users/addresses')
