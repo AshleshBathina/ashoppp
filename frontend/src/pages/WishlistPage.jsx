@@ -3,9 +3,6 @@ import { MobileWishlistCard, DesktopWishlistCard } from "../components/WishlistC
 import useWishlist from "../hooks/useWishlist"
 import useCart from "../hooks/useCart"
 
-
-
-/* ─── Main page ───────────────────────────────────────────── */
 const WishlistPage = () => {
   const { wishlist, wishlistCount, isLoading, removeFromWishlist, isTogglePending } = useWishlist()
   const { toggleCart, isInCart, isAddingToCart, isRemovingFromCart } = useCart()
