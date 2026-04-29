@@ -5,9 +5,9 @@ import { productsApi, interestApi } from "../lib/api"
 import useCart from "../hooks/useCart"
 import useWishlist from "../hooks/useWishlist"
 import ImageCarousel from "../components/ImageCarousel"
+import StarRating from "../components/StarRating"
 import {
   ArrowLeft,
-  Star,
   Heart,
   ShoppingCart,
   Check,
@@ -19,17 +19,7 @@ import {
   Sparkles,
 } from "lucide-react"
 
-/* ─── Star renderer ─────────────────────────────────────── */
-const StarRating = ({ rating, size = "size-4" }) => (
-  <div className="flex items-center gap-0.5">
-    {[1, 2, 3, 4, 5].map(i => (
-      <Star
-        key={i}
-        className={`${size} ${i <= Math.round(rating) ? "fill-amber-400 text-amber-400" : "fill-white/10 text-white/20"}`}
-      />
-    ))}
-  </div>
-)
+
 
 
 
