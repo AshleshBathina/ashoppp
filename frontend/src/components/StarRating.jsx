@@ -1,6 +1,6 @@
 import { Star } from "lucide-react"
 
-/* ─── Star renderer ─────────────────────────────────────── */
+
 const StarRating = ({ rating, size = "size-4" }) => (
   <div className="flex items-center gap-0.5">
     {[1, 2, 3, 4, 5].map(i => (
