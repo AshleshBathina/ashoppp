@@ -7,7 +7,7 @@ import { ArrowLeft, MapPin, Plus } from "lucide-react"
 import { AddressForm, DesktopAddressModal } from "../modals/AddressFormModal"
 import { AddressCard, DesktopAddressCard } from "../components/AddressCard"
 
-/*  main page  */
+//main page
 
 const AddressesPage = () => {
   const navigate = useNavigate()
