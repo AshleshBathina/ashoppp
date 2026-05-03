@@ -57,7 +57,7 @@ const NavigationBar = () => {
 
   return (
     <>
-      {/* ── Mobile: floating pill nav ── */}
+      {/* Mobile: floating pill nav */}
       <ul className="md:hidden gap-6 flex items-center bg-black/50 backdrop-blur-sm rounded-3xl z-10 fixed bottom-4 left-1/2 -translate-x-1/2 px-6 py-3">
         {navigateEnum.map(nav => {
           const active = location === nav.path
@@ -75,7 +75,7 @@ const NavigationBar = () => {
         })}
       </ul>
 
-      {/* ── Desktop: vertical sidebar ── */}
+      {/* Desktop: vertical sidebar */}
       <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-56 bg-[#111111] border-r border-[#222222] z-20 pt-8 pb-6 px-5 gap-2">
         {/* Brand */}
         <div className="mb-8 px-2">
