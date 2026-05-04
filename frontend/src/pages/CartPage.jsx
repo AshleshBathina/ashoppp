@@ -143,7 +143,7 @@ const CartPage = () => {
             <p className="text-white/50 text-lg">Your cart is empty</p>
           </div>
         ) : (
-          /* Two-column layout: cart items + order summary */
+          // Two-column layout: cart items + order summary
           <div className="flex flex-1 gap-8 px-10 py-8 items-start">
 
             {/* Left — cart items list */}
