@@ -9,6 +9,7 @@ const useCart = () => {
     queryFn: cartApi.getCart
   })
 
+  //mutation
   const addToCartMutation = useMutation({
     mutationFn: cartApi.addToCart,
     onSuccess: (data) => {
