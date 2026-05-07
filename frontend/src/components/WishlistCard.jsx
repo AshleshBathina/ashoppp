@@ -1,7 +1,7 @@
 import { Heart, ShoppingCart, Trash2, Plus, Check, LoaderIcon, Star } from "lucide-react"
 import { useNavigate } from "react-router"
 
-/* ─── Mobile card ─────────────────────────────────────────── */
+/* Mobile card */
 export const MobileWishlistCard = ({ product, onRemove, onCartToggle, isInCart, isPending, isCartBusy }) => {
   const navigate = useNavigate()
   return (
