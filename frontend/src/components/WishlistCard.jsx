@@ -57,7 +57,7 @@ export const MobileWishlistCard = ({ product, onRemove, onCartToggle, isInCart, 
   )
 }
 
-/* ─── Desktop card ────────────────────────────────────────── */
+/*  Desktop card  */
 export const DesktopWishlistCard = ({ product, onRemove, onCartToggle, isInCart, isPending, isCartBusy }) => {
   const navigate = useNavigate()
   return (
