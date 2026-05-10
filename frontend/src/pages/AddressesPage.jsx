@@ -16,7 +16,7 @@ const AddressesPage = () => {
   const [showForm, setShowForm] = useState(false)
   const [editingAddress, setEditingAddress] = useState(null)
 
-  /* ── queries ── */
+  {/* ── queries ── */ }
   const { data: addresses = [], isLoading } = useQuery({
     queryKey: ["addresses"],
     queryFn: userApi.getAddresses,
