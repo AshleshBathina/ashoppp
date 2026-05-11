@@ -22,7 +22,7 @@ const AddressesPage = () => {
     queryFn: userApi.getAddresses,
   })
 
-  /* ── mutations ── */
+  {/* ── mutations ── */ }
   const invalidate = () => queryClient.invalidateQueries({ queryKey: ["addresses"] })
 
   const addMutation = useMutation({
