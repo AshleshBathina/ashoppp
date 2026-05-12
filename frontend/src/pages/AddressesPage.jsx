@@ -40,7 +40,7 @@ const AddressesPage = () => {
     onSuccess: invalidate,
   })
 
-  /* ── handlers ── */
+  {/* ── handlers ── */ }
   const openAddForm = () => {
     setEditingAddress(null)
     setShowForm(true)
