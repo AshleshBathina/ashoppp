@@ -68,7 +68,7 @@ export async function addToCart(req, res) {
     await cart.save()
     console.log('✅ Cart saved successfully. Total items:', cart.items.length)
 
-    {/* Re-populate after save to ensure frontend gets full product details */ }
+    //Re-populate after save to ensure frontend gets full product details
     await cart.populate('items.product')
     res.status(200).json({ cart })
 
