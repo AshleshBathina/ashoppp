@@ -87,7 +87,7 @@ export async function updateCartItem(req, res) {
     const { quantity } = req.body;
 
     if (quantity < 1) {
-      return res.status(403).json({ erro: "Cannot update to zero or lower values" })
+      return res.status(403).json({ erro: "Cannot update to zero or lower values" });
     }
 
     const cart = await Cart.findOne({ clerkId: req.user.clerkId }).populate('items.product')
