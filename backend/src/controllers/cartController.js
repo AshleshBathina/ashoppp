@@ -133,7 +133,7 @@ export async function removeFromCart(req, res) {
     const cart = await Cart.findOne({ clerkId: req.user.clerkId }).populate('items.product')
 
     if (!cart) {
-      return res.status(400).json({ error: "Cart not found" })
+      return res.status(400).json({ error: "Cart not found" });
     }
 
     cart.items = cart.items.filter((item) => item.product._id.toString() !== productId)
