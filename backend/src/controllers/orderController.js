@@ -20,7 +20,7 @@ export async function createOrder(req, res) {
       }
 
       if (product.stock < item.quantity) {
-        return res.status(400).json({ error: `Insufficient stock for ${product.name}` })
+        return res.status(400).json({ error: `Insufficient stock for ${product.name}` });
       }
 
 
