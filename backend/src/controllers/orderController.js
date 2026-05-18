@@ -44,7 +44,7 @@ export async function createOrder(req, res) {
     res.status(201).json({ message: "Order created successfully", order })
   } catch (error) {
     console.error("Error in createOrder controller: ", error);
-    res.status(500).json({ error: "Internal server error" })
+    res.status(500).json({ error: "Internal server error" });
   }
 }
 
