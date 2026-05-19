@@ -77,7 +77,7 @@ export async function updateProduct(req, res) {
       });
 
       const uploadResults = await Promise.all(uploadPromises);
-      product.images = uploadResults.map(result => result.secure_url)
+      product.images = uploadResults.map(result => result.secure_url);
     }
 
     await product.save()
