@@ -11,7 +11,7 @@ const useCart = () => {
 
   const addToCartMutation = useMutation({
     mutationFn: cartApi.addToCart,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
     onError: (error) => {
@@ -28,7 +28,7 @@ const useCart = () => {
 
   const removeFromCartMutation = useMutation({
     mutationFn: cartApi.removeFromCart,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
     onError: (error) => {
