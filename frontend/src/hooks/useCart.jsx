@@ -48,10 +48,10 @@ const useCart = () => {
 
   const toggleCart = (productId) => {
     if (isInCart(productId)) {
-      removeFromCartMutation.mutate(productId)
+      removeFromCartMutation.mutate(productId);
     } else {
 
-      addToCartMutation.mutate(productId)
+      addToCartMutation.mutate(productId);
     }
   }
 
