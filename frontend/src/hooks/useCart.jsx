@@ -12,10 +12,10 @@ const useCart = () => {
   const addToCartMutation = useMutation({
     mutationFn: cartApi.addToCart,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] })
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
     },
     onError: (error) => {
-      console.error('addToCart ERROR:', error)
+      console.error('addToCart ERROR:', error);
     }
   })
 
