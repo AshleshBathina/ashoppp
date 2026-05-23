@@ -29,7 +29,7 @@ const useCart = () => {
   const removeFromCartMutation = useMutation({
     mutationFn: cartApi.removeFromCart,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['cart'] })
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
     },
     onError: (error) => {
       console.error('removeFromCart ERROR:', error)
