@@ -38,7 +38,7 @@ const useCart = () => {
 
   const clearCartMutation = useMutation({
     mutationFn: cartApi.clearCart,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cart'] })
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cart'] }),
   })
 
   const isInCart = (productId) => {
