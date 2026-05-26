@@ -7,7 +7,7 @@ const useProducts = () => {
   const data = useQuery({
     queryKey: ['products'],
     queryFn: productsApi.getAllProducts
-  })
+  });
 
   return data;
 }
