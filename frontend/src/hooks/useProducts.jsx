@@ -12,4 +12,4 @@ const useProducts = () => {
   return data;
 }
 
-export default useProducts
+export default useProducts;
