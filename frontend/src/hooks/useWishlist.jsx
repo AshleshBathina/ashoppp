@@ -11,7 +11,7 @@ const useWishlist = () => {
 
   const addToWishlistMutation = useMutation({
     mutationFn: wishlistApi.addToWishlist,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['wishlist'] })
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['wishlist'] }),
   })
 
   const removeFromWishlistMutation = useMutation({
@@ -29,7 +29,7 @@ const useWishlist = () => {
     if (isInWishlist(productId)) {
       removeFromWishlistMutation.mutate(productId);
     } else {
-      addToWishlistMutation.mutate(productId)
+      addToWishlistMutation.mutate(productId);
     }
   }
 
