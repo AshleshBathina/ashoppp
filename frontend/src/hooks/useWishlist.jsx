@@ -33,7 +33,7 @@ const useWishlist = () => {
     }
   }
 
-  /** Returns true while this specific product is being added or removed */
+  {/** Returns true while this specific product is being added or removed */}
   const isTogglePending = (productId) => {
     if (addToWishlistMutation.isPending && addToWishlistMutation.variables === productId) return true;
     if (removeFromWishlistMutation.isPending && removeFromWishlistMutation.variables === productId) return true;
