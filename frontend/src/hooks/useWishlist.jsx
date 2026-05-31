@@ -55,4 +55,4 @@ const useWishlist = () => {
   }
 }
 
-export default useWishlist
+export default useWishlist;
