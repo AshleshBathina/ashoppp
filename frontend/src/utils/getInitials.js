@@ -6,4 +6,4 @@ const getInitials = (name = "") =>
     .toUpperCase()
     .slice(0, 2)
 
-export default getInitials
+export default getInitials;
